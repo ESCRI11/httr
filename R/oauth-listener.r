@@ -37,7 +37,7 @@ oauth_listener <- function(request_url, is_interactive = interactive()) {
     list(
       status = 200L,
       headers = list("Content-Type" = "text/plain"),
-      body = "Authentication complete. Please close this page and return to R."
+      body = "Authentication complete. Please close this page and return to ShinyLactate."
     )
   }
   use <- listener_endpoint()
@@ -46,7 +46,7 @@ oauth_listener <- function(request_url, is_interactive = interactive()) {
 
   message("Waiting for authentication in browser...")
   message("Press Esc/Ctrl + C to abort")
-  BROWSE(request_url)
+  browseURL(request_url)
   while (is.null(info)) {
     httpuv::service()
     Sys.sleep(0.001)
