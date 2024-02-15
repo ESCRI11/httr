@@ -34,10 +34,12 @@ oauth_listener <- function(request_url, is_interactive = interactive()) {
       info <<- parse_query(gsub("^\\?", "", query))
     }
 
+    html_response <- '<html><head><script type="text/javascript">window.onload = function() { window.close(); }</script></head><body>Authentication complete. You can close this window if it does not close automatically.</body></html>'
+
     list(
       status = 200L,
-      headers = list("Content-Type" = "text/plain"),
-      body = "Authentication complete. Please close this page and return to ShinyLactate."
+      headers = list("Content-Type" = "text/html"),
+      body = html_response
     )
   }
   use <- listener_endpoint()
